@@ -52,7 +52,7 @@ defmodule Rummage.Phoenix.SearchController do
       _ ->
         search_params = search_params
         |> Map.to_list
-        |> Enum.map(&change_assoc_to_a_one_member_list &1)
+        # |> Enum.map(&change_assoc_to_a_one_member_list &1)
         |> Enum.reject(fn(x) -> elem(x, 1) == "" end)
         |> Enum.into(%{})
 
@@ -61,7 +61,7 @@ defmodule Rummage.Phoenix.SearchController do
   end
 
   # This is temporary until we figure out how to add multiple assoc to a form
-  defp change_assoc_to_a_one_member_list({field, params}) when is_binary(params), do: {field, Map.put(params, "assoc", [])}
+  # defp change_assoc_to_a_one_member_list({field, params}) when is_binary(params), do: {field, Map.put(params, "assoc", [])}
   defp change_assoc_to_a_one_member_list({field, params}) do
     case params["assoc"] do
       nil -> {field, Map.put(params, "assoc", [])}
